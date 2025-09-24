@@ -1,4 +1,4 @@
-# Домашнее задание к занятию "«SQL. Часть 2»" - `Иншаков Владимир`
+# Домашнее задание к занятию «SQL. Часть 2» - `Иншаков Владимир`
 
 ### Задание 1
 
@@ -9,7 +9,17 @@
 
 ### Решение 1
 
-
+```
+SELECT st.staff_id AS 'Номер сотрудника', CONCAT(st.first_name , ' ', st.last_name) AS 'Сотрудник', ci.city AS 'Город', COUNT(cus.customer_id) AS 'Количество покупателей'		
+FROM sakila.store s
+JOIN sakila.staff st on st.store_id = s.store_id 
+JOIN sakila.customer cus on cus.store_id = s.store_id
+JOIN sakila.address a on a.address_id = s.address_id 
+JOIN sakila.city ci on ci.city_id = a.city_id 
+GROUP BY st.staff_id, ci.city_id 
+HAVING COUNT(cus.customer_id) > 300;
+```
+![Screenshot_1](https://github.com/MrVanG0gh/Netology_12-04_SQL_p2/blob/main/Screenshots/Screenshot_1.png)
 
 ---
 
