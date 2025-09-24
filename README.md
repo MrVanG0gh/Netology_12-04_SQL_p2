@@ -35,7 +35,7 @@ FROM sakila.film f
 WHERE f.`length` > (
 	SELECT AVG(f.`length`)
 	FROM sakila.film f
-	)
+	);
 ```
 ![Screenshot_2](https://github.com/MrVanG0gh/Netology_12-04_SQL_p2/blob/main/Screenshots/Screenshot_2.png)
 
