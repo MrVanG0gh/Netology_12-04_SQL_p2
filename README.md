@@ -47,7 +47,23 @@ WHERE f.`length` > (
 
 ### Решение 3
 
+```
+SELECT t.AmountOfPayments, t.MonthOfPayments, (
+	SELECT count(r.rental_id)
+	FROM sakila.rental r
+	WHERE DATE_FORMAT(r.rental_date, '%M %Y') = t.MonthOfPayments) 
+	AS	'CountOfRent'
+FROM (
+  	SELECT SUM(p.amount) AS 'AmountOfPayments', DATE_FORMAT(p.payment_date, '%M %Y') AS 'MonthOfPayments' 
+  	FROM sakila.payment p 
+  	GROUP BY DATE_FORMAT(p.payment_date, '%M %Y')
+  	) AS t
+ORDER BY t.AmountOfPayments DESC  
+LIMIT 1;
 
+```
+
+![Screenshot_3](https://github.com/MrVanG0gh/Netology_12-04_SQL_p2/blob/main/Screenshots/Screenshot_3.png)
 
 
 ---
